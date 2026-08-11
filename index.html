@@ -275,6 +275,8 @@ ul li em { font-style: normal; color: var(--dim); }
   .job-head { flex-wrap: wrap; row-gap: 2px; }
 }
 
+#btn-bg, #btn-shuffle { display: none; }
+
 @media screen and (max-width: 560px) {
   .cv-header h1 { font-size: 18px; letter-spacing: 0.14em; padding-left: 0.14em; }
   aside { grid-template-columns: 1fr; gap: 7mm; }
@@ -909,6 +911,9 @@ function updateBackdrop() {
 btnBg.addEventListener('click', () => {
   bgIndex++;
   if (bgIndex >= backdropLevels.length) bgIndex = 0;
+  if (window.matchMedia('(pointer: coarse)').matches) {
+  bgIndex = backdropLevels.length - 1;
+}
   updateBackdrop();
 });
 
