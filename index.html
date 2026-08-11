@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curriculum Vitae — Luca Celano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;500;600;700&family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
+<style>
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --paper: #fbfbf8;
+  --aside: #f3f3ee;
+  --ink: #171717;
+  --soft: #484848;
+  --dim: #8c8c8c;
+  --line: #e1e1da;
+  --accent: #8b2a24;
+  --bg: #e7e7e2;
+}
+
+body.dark-theme {
+  --paper: #0d0d0d;
+  --aside: #121214;
+  --ink: #d9d9d9;
+  --soft: #a2a2a2;
+  --dim: #6b6b6b;
+  --line: #272727;
+  --accent: #d84a3f;
+  --bg: #060606;
+}
+
+body {
+  font-family: 'Noto Sans Mono', 'Noto Sans Symbols 2', ui-monospace, 'Courier New', monospace;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+  transition: background 0.3s ease;
+  overflow-x: hidden;
+}
+
+#ascii-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.1;
+  overflow: hidden;
+  color: var(--ink);
+  white-space: pre;
+  font-family: 'Courier New', Courier, monospace;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.page-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 15mm 15mm 11mm;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 44px rgba(0,0,0,0.16);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-theme .page {
+  box-shadow: 0 12px 44px rgba(0,0,0,0.55);
+}
+
+.controls {
+  position: absolute;
+  top: 15mm;
+  right: -50px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-btn {
+  background: var(--paper);
+  color: var(--dim);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.control-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.control-btn svg { display: block; }
+
+.control-btn.text {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Header ---------- */
+.cv-header { text-align: center; margin-bottom: 9mm; }
+.cv-header h1 {
+  font-size: 30px; font-weight: 700;
+  letter-spacing: 0.3em; padding-left: 0.3em;
+  margin-bottom: 9px;
+}
+.cv-role {
+  font-size: 12px; letter-spacing: 0.24em; padding-left: 0.24em;
+  text-transform: uppercase; color: var(--soft);
+}
+.cv-rule {
+  margin-top: 9mm;
+  font-size: 10px; letter-spacing: 0.6em; padding-left: 0.6em;
+  color: var(--dim); font-family: 'Noto Sans Symbols 2', monospace;
+}
+
+/* ---------- Layout Base ---------- */
+.columns { display: grid; grid-template-columns: 62mm 1fr; gap: 9mm; flex: 1; }
+
+aside {
+  background: var(--aside);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 6mm 5mm;
+  align-self: start;
+}
+
+.photo-container {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--line);
+  border-radius: 4px;
+  margin-bottom: 6mm;
+  overflow: hidden;
+}
+.photo-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+section { margin-bottom: 8mm; }
+section:last-child { margin-bottom: 0; }
+
+h2 {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px; margin-bottom: 12px;
+}
+h2 .mark {
+  color: var(--accent);
+  font-family: 'Noto Sans Symbols 2', monospace;
+  margin-right: 7px;
+}
+
+/* ---------- Sidebar ---------- */
+dl { display: grid; grid-template-columns: auto 1fr; column-gap: 9px; row-gap: 5px; }
+dt { font-size: 10.5px; color: var(--dim); }
+dd { font-size: 10.5px; color: var(--ink); overflow-wrap: anywhere; }
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+a:hover { opacity: 0.75; }
+
+.skill-cat {
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); margin: 11px 0 6px;
+}
+.skill-cat:first-of-type { margin-top: 0; }
+
+ul { list-style: none; }
+ul li {
+  font-size: 10.5px; color: var(--ink);
+  padding-left: 13px; position: relative; margin-bottom: 3px;
+}
+ul li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); }
+ul li em { font-style: normal; color: var(--dim); }
+
+/* ---------- Main Column ---------- */
+.profile {
+  font-size: 12px; line-height: 1.7; color: var(--ink);
+  text-align: justify;
+}
+
+.job { margin-bottom: 7mm; }
+.job:last-child { margin-bottom: 0; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.job-title { font-size: 13px; font-weight: 600; }
+.job-title em { font-style: normal; font-weight: 400; font-size: 11px; color: var(--dim); }
+.job-date { font-size: 10.5px; color: var(--dim); white-space: nowrap; }
+.job-org {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--dim);
+  margin: 3px 0 5px;
+}
+.job-desc { font-size: 11.5px; line-height: 1.65; color: var(--soft); }
+
+/* ---------- GDPR ---------- */
+.gdpr {
+  margin-top: 9mm; padding-top: 5mm;
+  border-top: 1px solid var(--line);
+  font-size: 9px; color: var(--dim); text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 980px) {
+  body { padding: 24px 12px; }
+
+  .controls {
+    position: fixed;
+    top: auto;
+    right: 12px;
+    bottom: 14px;
+    flex-direction: row;
+    gap: 8px;
+    z-index: 50;
+  }
+  .control-btn { backdrop-filter: blur(6px); }
+
+  .page { width: 100%; min-height: auto; padding: 10mm 8mm 8mm; }
+
+  .cv-header h1 { font-size: 22px; letter-spacing: 0.18em; padding-left: 0.18em; }
+  .cv-rule { letter-spacing: 0.4em; padding-left: 0.4em; }
+
+  .columns { grid-template-columns: 1fr; gap: 7mm; }
+
+  aside {
+    display: grid;
+    grid-template-columns: 42mm 1fr;
+    column-gap: 6mm;
+    align-items: start;
+  }
+  .photo-container { margin-bottom: 0; }
+  aside section:nth-of-type(2),
+  aside section:nth-of-type(3) { grid-column: 1 / -1; }
+
+  .job-head { flex-wrap: wrap; row-gap: 2px; }
+}
+
+@media screen and (max-width: 560px) {
+  aside { grid-template-columns: 1fr; }
+  aside section:nth-of-type(2),
+  aside section:nth-of-type(3) { grid-column: auto; }
+  .photo-container { width: 45mm; margin: 0 auto 5mm; }
+}
+
+/* ---------- Stampa ---------- */
+@media print {
+  body { background: #fff; display: block; padding: 0; overflow: visible; }
+  #ascii-backdrop, .controls { display: none !important; }
+  .page-wrapper { display: block; }
+
+  .page {
+    width: auto;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    box-shadow: none;
+    zoom: 0.85;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    --paper: #ffffff; --aside: #f5f5f1; --ink: #141414;
+    --soft: #3d3d3d; --dim: #707070; --line: #d9d9d3; --accent: #8b2a24;
+  }
+
+  .cv-header { margin-bottom: 5mm; }
+  .cv-rule { margin-top: 5mm; }
+  section { margin-bottom: 5mm; }
+  .job { margin-bottom: 4.5mm; }
+  .gdpr { margin-top: 4mm; padding-top: 3mm; }
+
+  .job { break-inside: avoid; page-break-inside: avoid; }
+  section { break-inside: avoid; page-break-inside: avoid; }
+  h2 { break-after: avoid; page-break-after: avoid; }
+
+  @page { size: A4; margin: 12mm; }
+}
+</style>
+</head>
+<body>
+
+<pre id="ascii-backdrop"></pre>
+
+<main class="page-wrapper">
+
+  <div class="controls">
+    <button class="control-btn" id="btn-theme" data-i18n-title="btn_theme" title="Cambia tema">◑</button>
+    <button class="control-btn" id="btn-bg" data-i18n-title="btn_bg" title="Densità sfondo">▓</button>
+    <button class="control-btn" id="btn-shuffle" data-i18n-title="btn_shuffle" title="Cambia pattern">⚄</button>
+    <button class="control-btn text" id="btn-lang" data-i18n-title="btn_lang" title="Versione inglese">EN</button>
+    <button class="control-btn" id="btn-print" data-i18n-title="btn_print" title="Stampa / Esporta PDF" aria-label="Stampa">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+    </button>
+  </div>
+
+  <div class="page">
+    <header class="cv-header">
+      <h1>LUCA CELANO</h1>
+      <p class="cv-role" data-i18n="role">Designer di prodotto · Artista digitale</p>
+      <p class="cv-rule" aria-hidden="true">░ ▒ ▓ ▒ ░</p>
+    </header>
+
+    <div class="columns">
+
+      <!-- SIDEBAR -->
+      <aside>
+        <!-- Il file foto.png deve trovarsi nella stessa cartella di questo HTML. -->
+        <div class="photo-container">
+          <img src="foto.png" alt="Luca Celano">
+        </div>
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_contatti">Contatti</span></h2>
+          <dl>
+            <dt>email</dt><dd><a href="mailto:luca.celano@studenti.unipg.it">luca.celano@studenti.unipg.it</a></dd>
+            <dt>tel</dt><dd>+39 370 710 8218</dd>
+            <dt data-i18n="dt_sede">sede</dt><dd>Assisi (PG) · Pitigliano (GR)</dd>
+            <dt>web</dt><dd><a href="https://linktr.ee/RoyalNaym">linktr.ee/RoyalNaym</a></dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_competenze">Competenze</span></h2>
+
+          <p class="skill-cat" data-i18n="cat_grafica">Grafica e UI</p>
+          <ul>
+            <li>Adobe Suite <em>(Ps, Ai, Id)</em></li>
+            <li>Affinity Suite</li>
+            <li>Figma</li>
+          </ul>
+
+          <p class="skill-cat" data-i18n="cat_cad">CAD e Modellazione 3D</p>
+          <ul>
+            <li>AutoCAD</li>
+            <li>Fusion 360</li>
+            <li>Rhinoceros</li>
+            <li>KeyShot <em>· rendering</em></li>
+            <li>Blender <em>· base</em></li>
+          </ul>
+
+          <p class="skill-cat" data-i18n="cat_illustrazione">Illustrazione 2D</p>
+          <ul>
+            <li>Clip Studio Paint</li>
+            <li>Aseprite <em>· pixel art</em></li>
+          </ul>
+
+          <p class="skill-cat" data-i18n="cat_ai">Strumenti AI</p>
+          <ul>
+            <li>Codex <em>· coding</em></li>
+            <li>Claude Code <em>· coding</em></li>
+            <li data-i18n="ai_img">Nano Banana 2 <em>· generazione immagini</em></li>
+            <li>Claude, Gemini, ChatGPT, Kimi, GLM <em>· LLM</em></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_lingue">Lingue</span></h2>
+          <dl>
+            <dt data-i18n="lang_it_name">Italiano</dt><dd data-i18n="lang_it_level">madrelingua</dd>
+            <dt data-i18n="lang_en_name">Inglese</dt><dd>C1</dd>
+          </dl>
+        </section>
+      </aside>
+
+      <!-- MAIN COLUMN -->
+      <div class="main-col">
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_profilo">Profilo</span></h2>
+          <p class="profile" data-i18n="profile">
+            Progettista con una formazione in design del prodotto industriale e una specializzazione in corso in design per l'ambiente. Parallelamente al percorso accademico, ho sviluppato una solida pratica professionale come artista digitale e creative lead nel settore dello sviluppo videoludico indipendente. Questo percorso ibrido mi permette di unire il rigore metodologico, logico e strutturale del design industriale con la direzione artistica, la gestione visiva e le dinamiche di produzione di prodotti digitali commerciali.
+          </p>
+        </section>
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_formazione">Formazione Accademica</span></h2>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="edu1_title">Laurea Magistrale in Planet Life Design</span>
+              <span class="job-date" data-i18n="edu1_date">2024 – in corso</span>
+            </div>
+            <p class="job-org" data-i18n="edu1_org">Università degli Studi di Perugia, sede di Assisi</p>
+            <p class="job-desc" data-i18n="edu1_desc">Specializzazione orientata alla progettazione per l'ambiente e allo sviluppo sostenibile.</p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="edu2_title">Laurea Triennale in Design del Prodotto Industriale</span>
+              <span class="job-date">2021 – 2024</span>
+            </div>
+            <p class="job-org" data-i18n="edu2_org">Università degli Studi di Ferrara</p>
+            <p class="job-desc" data-i18n="edu2_desc">Votazione conseguita: 107/110.</p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="edu3_title">Diploma di Maturità Scientifica</span>
+              <span class="job-date">2016 – 2021</span>
+            </div>
+            <p class="job-org">Liceo Scientifico I.S.I.S. Francesco Zuccarelli, Manciano</p>
+          </article>
+        </section>
+
+        <section>
+          <h2><span class="mark">❖</span><span data-i18n="sec_esperienza">Esperienza Professionale</span></h2>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="job1_title">Creative Lead e 2D Artist <em>· contratto esterno</em></span>
+              <span class="job-date" data-i18n="job1_date">2022 – in corso</span>
+            </div>
+            <p class="job-org" data-i18n="job1_org">Milkbubbles, studio di sviluppo indipendente</p>
+            <p class="job-desc" data-i18n="job1_desc">Direzione artistica del videogioco GladiEATers, <a href="https://store.steampowered.com/app/2141280/GladiEATers/">pubblicato su Steam</a>. Responsabile della creazione di sprite e asset 2D, della progettazione dell'interfaccia utente (UI) e del coordinamento del flusso di lavoro visivo all'interno di un team di sviluppo internazionale.</p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="job2_title">Artista Freelance</span>
+              <span class="job-date" data-i18n="job2_date">2020 – in corso</span>
+            </div>
+            <p class="job-org" data-i18n="job2_org">Libera professione</p>
+            <p class="job-desc" data-i18n="job2_desc">Gestione di commissioni per clienti privati. Sviluppo di illustrazioni, concept art e materiale grafico lavorando in autonomia sulle specifiche e sulle scadenze richieste dalla committenza.</p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="job3_title">Tirocinante</span>
+              <span class="job-date" data-i18n="job3_date">giu 2024</span>
+            </div>
+            <p class="job-org">Emilia Romagna Music Commission, Bologna</p>
+            <p class="job-desc" data-i18n="job3_desc">Supporto alle attività operative dell'ente regionale, affiancamento nella gestione organizzativa e partecipazione alle dinamiche interne di un'istituzione culturale pubblica.</p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <span class="job-title" data-i18n="job4_title">Assistente di Studio Fotografico <em>· Erasmus+</em></span>
+              <span class="job-date">2021</span>
+            </div>
+            <p class="job-org" data-i18n="job4_org">Studio fotografico locale, La Coruña (Spagna)</p>
+            <p class="job-desc" data-i18n="job4_desc">Esperienza formativa internazionale pre-universitaria della durata di un mese. Affiancamento nelle operazioni quotidiane, gestione della strumentazione e supporto sul set.</p>
+          </article>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="gdpr" data-i18n="gdpr">
+      Autorizzo il trattamento dei miei dati personali ai sensi del Decreto Legislativo 30 giugno 2003, n. 196 e dell'art. 13 del GDPR (Regolamento UE 2016/679). CV creato l'11/08/26 tramite l'utilizzo e l'aiuto di Claude Fable.
+    </div>
+  </div>
+</main>
+
+<script>
+// --- Pattern ASCII: set completo UNICODA ---
+const PATTERN_CONFIG = {
+    patterns: {
+        museum: (x, y, t, w, h) => {
+            const tile_x = Math.floor(x / 8);
+            const tile_y = Math.floor(y / 6);
+            const checkerboard = (tile_x + tile_y) % 2 ? 0.3 : -0.3;
+            const ornament = Math.sin(tile_x * 0.5 + t * 0.08) * Math.cos(tile_y * 0.4 + t * 0.06) * 0.4;
+            const institutional_hum = Math.sin(x * 0.02 + y * 0.025 + t * 0.03) * 0.15;
+            return checkerboard + ornament + institutional_hum;
+        },
+        transformation: (x, y, t, w, h) => {
+            const progress = (Math.sin(t * 0.25) + 1) * 0.5;
+            const centers = [
+                {x: w * 0.5, y: h * 0.3, radius: 8 + progress * 12},
+                {x: w * 0.4, y: h * 0.7, radius: 6 + progress * 10},
+                {x: w * 0.6, y: h * 0.5, radius: 10 + progress * 8}
+            ];
+            let value = 0;
+            centers.forEach((center, i) => {
+                const dx = x - center.x;
+                const dy = y - center.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const expansion = Math.sin(dist * 0.3 - t * 0.8 - i * 0.5);
+                const intensity = 1 / (1 + dist * 0.1);
+                const strain = Math.sin(dist - center.radius + t * 0.3) * Math.exp(-((dist - center.radius) ** 2) * 0.01);
+                value += (expansion * intensity + strain) * 0.3;
+            });
+            return value;
+        },
+        hieroglyph: (x, y, t, w, h) => {
+            const pyramid_grid = Math.sin(x * 0.4 + y * 0.4) * Math.cos(x * 0.2 - y * 0.2);
+            const symbol_blocks = Math.sin(Math.floor(x / 6) * 1.2 + Math.floor(y / 4) * 0.8 + t * 0.1) * Math.cos(Math.floor(x / 8) * 0.9 + Math.floor(y / 5) * 1.1);
+            const papyrus_texture = Math.sin(x * 0.7 + t * 0.05) * Math.cos(y * 0.5 + t * 0.08) * 0.2;
+            const strata = Math.sin(y * 0.2 + t * 0.12) * Math.exp(-Math.abs(y - h/2) * 0.02);
+            const cx = w / 2, cy = h / 2;
+            const oval_dist = Math.sqrt((x - cx) ** 2 * 0.5 + (y - cy) ** 2);
+            const cartouche = Math.sin(oval_dist * 0.3 + t * 0.4) * Math.exp(-Math.abs(oval_dist - h * 0.3) * 0.05);
+            return pyramid_grid * 0.3 + symbol_blocks * 0.4 + papyrus_texture + strata * 0.3 + cartouche * 0.4;
+        },
+        salon: (x, y, t, w, h) => {
+            const conversation_ripples = Math.sin(x * 0.3 + t * 0.6) * Math.cos(y * 0.25 + t * 0.4);
+            let fan_pattern = 0;
+            [{x: w * 0.1, y: h * 0.1, spread: Math.PI / 3}, {x: w * 0.9, y: h * 0.1, spread: Math.PI / 3}, {x: w * 0.5, y: h * 0.9, spread: Math.PI / 4}].forEach((fan, i) => {
+                const dx = x - fan.x, dy = y - fan.y, angle = Math.atan2(dy, dx), dist = Math.sqrt(dx * dx + dy * dy);
+                fan_pattern += (Math.sin(angle / fan.spread * 8 + t * 0.2 + i * 0.5) * Math.exp(-dist * 0.03) * (Math.abs(angle) < fan.spread ? 1 : 0)) * 0.3;
+            });
+            const social_web = Math.sin(x * 0.2 + y * 0.15 + t * 0.3) * Math.cos(x * 0.15 - y * 0.2 + t * 0.25);
+            const sparkle = Math.sin(x * 1.2 + t * 1.8) * Math.sin(y * 1.1 + t * 1.5) * Math.sin(t * 2.0) * 0.2;
+            return conversation_ripples * 0.4 + fan_pattern + social_web * 0.3 + sparkle;
+        },
+        temporal: (x, y, t, w, h) => {
+            const flow_forward = Math.sin(x * 0.3 - t * 0.8) * Math.cos(y * 0.2);
+            const flow_backward = Math.sin(x * 0.3 + t * 0.8) * Math.cos(y * 0.2) * 0.5;
+            const time_ripples = Math.sin((x + y) * 0.2 + t * 0.4) * 0.3;
+            return flow_forward * 0.6 + flow_backward + time_ripples;
+        },
+        occult: (x, y, t, w, h) => {
+            const centerX = w / 2, centerY = h / 2, dx = x - centerX, dy = y - centerY, circle_dist = Math.sqrt(dx * dx + dy * dy);
+            const ritual_circle = Math.sin(circle_dist * 0.2 + t * 0.3) * (Math.abs(circle_dist - h * 0.3) < 3 ? 1 : 0.1);
+            const pentagram = Math.sin(Math.atan2(dy, dx) * 5 + t * 0.5) * Math.exp(-Math.abs(circle_dist - h * 0.25) * 0.1);
+            const emanations = Math.sin(x * 0.15 + y * 0.12 - t * 0.7) * Math.cos(x * 0.12 - y * 0.15 + t * 0.8) * Math.sin(t * 0.4);
+            const symbols = Math.sin(Math.floor(x / 7) * 2.3 + Math.floor(y / 6) * 1.9 + t * 0.1) * Math.cos(Math.floor(x / 8) * 1.7 + Math.floor(y / 9) * 2.1) * 0.3;
+            const tendrils = Math.sin(dx * 0.1 + dy * 0.08 + t * 0.6) * Math.cos(dx * 0.08 - dy * 0.1 + t * 0.9) * Math.exp(-circle_dist * 0.02);
+            return ritual_circle * 0.4 + pentagram * 0.5 + emanations * 0.4 + symbols + tendrils * 0.3;
+        },
+        lace: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, radius = Math.sqrt(dx*dx+dy*dy), angle = Math.atan2(dy, dx);
+            const petals = Math.sin(angle * 6 + t * 0.3) * Math.cos(radius * 0.4 - t * 0.2);
+            const doily = Math.sin(radius * 0.6 + t * 0.1) * Math.cos(angle * 8 - t * 0.4);
+            const filigree = Math.sin(dx * 0.5 + dy * 0.3 + t * 0.5) * 0.3;
+            return petals * 0.4 + doily * 0.4 + filigree;
+        },
+        abundance: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dist = Math.sqrt((x-cx)**2 + (y-cy)**2);
+            const growth = Math.sin(t * 0.3) * 0.5 + 1;
+            const rings = Math.sin(dist * 0.15 * growth - t * 0.4);
+            const branch1 = Math.sin(x * 0.2 + t * 0.2) * Math.cos(y * 0.15 + t * 0.3);
+            const branch2 = Math.cos(x * 0.1 + y * 0.1 + t * 0.25);
+            return rings * 0.5 + branch1 * 0.3 + branch2 * 0.2;
+        },
+        wraiths: (x, y, t, w, h) => {
+            const drift1 = Math.sin(x * 0.1 + y * 0.05 + t * 0.4) * Math.exp(-((x - w/3) ** 2 + (y - h/2) ** 2) * 0.001);
+            const drift2 = Math.cos(x * 0.08 - y * 0.06 + t * 0.6) * Math.exp(-((x - 2*w/3) ** 2 + (y - h/3) ** 2) * 0.001);
+            const wisp = Math.sin((x + y) * 0.3 + t * 0.8) * Math.sin(t * 0.5) * 0.3;
+            return drift1 * 0.4 + drift2 * 0.4 + wisp;
+        },
+        feast: (x, y, t, w, h) => {
+            const flow1 = Math.sin(x * 0.3 + t * 0.5) * Math.cos(y * 0.2 + t * 0.3);
+            const flow2 = Math.sin(y * 0.4 - t * 0.4) * Math.cos(x * 0.25 + t * 0.6);
+            const ripeness = Math.sin((x + y) * 0.15 + t * 0.7) * Math.sin(Math.sqrt((x - w/2) ** 2 + (y - h/2) ** 2) * 0.1 - t * 0.3);
+            return flow1 * 0.35 + flow2 * 0.35 + ripeness * 0.3;
+        },
+        hunger: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy), angle = Math.atan2(dy, dx);
+            const consumption = Math.sin(dist * 0.2 - t * 1.5) * Math.exp(-dist * 0.02);
+            const yearning = Math.sin(angle * 6 + t * 0.8) * Math.cos(dist * 0.1 + t * 0.5);
+            return consumption * 0.6 + yearning * 0.4;
+        },
+        loading: (x, y, t, w, h) => {
+            const steamFlow = Math.sin(x * 0.2 + y * 0.1 - t * 0.8) * Math.exp(-y * 0.05);
+            const rising = Math.sin(x * 0.3 + t * 0.6) * Math.cos(y * 0.2 - t * 0.4);
+            const drift = Math.cos((x + y) * 0.15 + t * 0.5) * Math.sin(y * 0.1 - t * 0.3);
+            return steamFlow * 0.4 + rising * 0.3 + drift * 0.3;
+        },
+        aether: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy);
+            const resonance1 = Math.sin(dist * 0.3 - t * 1.5) * Math.exp(-dist * 0.03);
+            const resonance2 = Math.cos(dist * 0.2 - t * 1.2) * Math.exp(-dist * 0.04);
+            const harmonics = Math.sin(dist * 0.6 - t * 2.0) * 0.3;
+            const interference = Math.sin(dx * 0.4 + t * 0.8) * Math.cos(dy * 0.4 + t * 0.6);
+            return resonance1 * 0.6 + resonance2 * 0.4 + harmonics + interference * 0.2;
+        },
+        chronos: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy), angle = Math.atan2(dy, dx);
+            const hourMarks = Math.sin(angle * 6) * (Math.abs(dist - h * 0.3) < 2 ? 1 : 0);
+            const pendulumAngle = Math.sin(t * 0.6) * 0.5;
+            const pendulumEffect = Math.abs(angle - pendulumAngle) < 0.1 ? Math.sin(dist * 0.2) : -0.5;
+            const timeRipples = Math.sin(dist * 0.15 - t * 0.8) * Math.exp(-dist * 0.02);
+            const clockwork = Math.sin(x * 0.3 + t * 0.4) * Math.cos(y * 0.3 + t * 0.3);
+            const pastEcho = Math.sin(dist * 0.25 - t * 0.5 + Math.PI) * Math.exp(-dist * 0.06) * 0.3;
+            return hourMarks + pendulumEffect * 0.4 + timeRipples * 0.6 + clockwork * 0.2 + pastEcho;
+        },
+        echoes: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy);
+            const echo1 = Math.sin(dist * 0.3 - t * 1.5) * Math.exp(-dist * 0.03);
+            const echo2 = Math.sin(dist * 0.3 - t * 1.5 + 2) * Math.exp(-dist * 0.05) * 0.7;
+            const echo3 = Math.sin(dist * 0.3 - t * 1.5 + 4) * Math.exp(-dist * 0.07) * 0.4;
+            const strata = Math.sin(y * 0.4 + x * 0.1 + t * 0.2) * Math.cos(y * 0.2 - t * 0.1);
+            const interference = Math.sin(x * 0.2 + t * 0.3) * Math.cos(y * 0.25 - t * 0.25);
+            return echo1 + echo2 + echo3 + strata * 0.3 + interference * 0.2;
+        },
+        luckycharm: (x, y, t, w, h) => {
+            const sparkle = Math.sin(x * 0.8 + t * 1.2) * Math.sin(y * 0.9 + t * 1.1) * 0.3;
+            const lucky_flow = Math.sin(x * 0.2 + t * 0.4) * Math.cos(y * 0.15 + t * 0.3);
+            const gentle_drift = Math.sin((x + y) * 0.1 + t * 0.2) * 0.4;
+            return lucky_flow * 0.5 + sparkle + gentle_drift;
+        },
+        roseschocolates: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, angle = Math.atan2(dy, dx), dist = Math.sqrt(dx*dx+dy*dy);
+            const rose_radius = h * 0.2 * Math.cos(5 * angle + t * 0.3);
+            const petal_proximity = Math.exp(-Math.abs(dist - Math.abs(rose_radius)) * 0.1);
+            const chocolate_swirl = Math.sin(dist * 0.2 - t * 0.4) * Math.sin(angle * 3 + t * 0.6);
+            return petal_proximity * 0.7 + chocolate_swirl * 0.4;
+        },
+        fertilityidol: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy), angle = Math.atan2(dy, dx);
+            const convergence = Math.sin(dist * 0.1 - t * 1.2) * Math.sin(angle * 6 + t * 0.8) * Math.exp(-dist * 0.01);
+            const division_wave = Math.sin(dist * 0.05 + t * 0.6) * Math.exp(-Math.abs(dist - t * 8) * 0.02);
+            const flash = Math.exp(-dist * 0.03) * (1 + Math.sin(t * 2.0) * 0.5);
+            return convergence * 0.4 + division_wave * 0.5 + flash * 0.3;
+        },
+        mine: (x, y, t, w, h) => {
+            const depth_factor = (y / h) * 2;
+            const corruption = Math.sin(x * 0.4 + depth_factor * 1.5 + t * 0.7) * Math.pow(depth_factor, 1.5);
+            const fracture = Math.sin(x * 1.2 + y * 0.8 + t * 1.1) * Math.sin(y * 0.6 - t * 0.8) * depth_factor;
+            const falling = Math.sin(x * 0.2 + (y + t * 40) * 0.3) * Math.exp(-((y + t * 20) % h) * 0.1);
+            return corruption * 0.5 + fracture * 0.4 + falling * 0.3;
+        },
+        inventory: (x, y, t, w, h) => {
+            const soft_motes = Math.sin(x * 0.15 + t * 0.08) * Math.sin(y * 0.12 + t * 0.06) * 0.3;
+            const distant_drift = Math.sin(x * 0.07 + t * 0.05) * 0.2;
+            const faint_scatter = Math.sin(y * 0.09 - t * 0.04) * 0.25;
+            const whisper_pattern = Math.sin((x * 0.2 + y * 0.18) + t * 0.03) * 0.15;
+            return soft_motes + distant_drift + faint_scatter + whisper_pattern;
+        },
+        future: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, angle = Math.atan2(dy, dx), dist = Math.sqrt(dx*dx+dy*dy);
+            const rays = Math.sin(angle * 10 + t * 0.05);
+            const zMotion = Math.sin(dist * 0.2 - t * 0.3);
+            const steam = Math.sin(x * 0.1 + y * 0.1 - t * 0.25);
+            const combined = (rays * zMotion * 0.4) + (steam * 0.25) - 0.05;
+            const centerMask = Math.min(1, Math.pow(dist * 0.08, 1.5));
+            return combined * centerMask;
+        },
+        misaligned: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy), angle = Math.atan2(dy, dx);
+            const wobble = Math.sin(angle * 5 + t * 0.5) * Math.sin(dist * 0.1);
+            const deepBreath = Math.sin((dist + wobble * 4) * 0.08 - t * 0.5);
+            const shivering = Math.sin(x * 0.5 + t * 2) * Math.cos(y * 0.5 - t * 2) * 0.1;
+            return (deepBreath * 0.5) + shivering - 0.1;
+        },
+        gorged: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy);
+            const lens = 1 + Math.pow(dist * 0.05, 2);
+            const surface = Math.sin((x / lens) * 0.8 + t * 0.2) * Math.cos((y / lens) * 0.8);
+            const sheen = Math.sin((x + y) * 0.1 - t * 0.5);
+            return surface * 0.5 + sheen * 0.2 - 0.1;
+        },
+        satchel: (x, y, t, w, h) => {
+            const warp = Math.sin(x * 0.8 + t * 0.1);
+            const weft = Math.cos(y * 0.8 - t * 0.1);
+            const sag = Math.sin(x * 0.1 + y * 0.1 + t * 0.2) * 0.3;
+            return (warp * weft) * 0.3 + sag - 0.2;
+        },
+        distortion: (x, y, t, w, h) => {
+            const cx = w/2, cy = h/2, dx = x-cx, dy = y-cy, dist = Math.sqrt(dx*dx+dy*dy);
+            const warpX = x + Math.sin(y * 0.3 + t * 0.8) * 3;
+            const warpY = y + Math.cos(x * 0.2 + t * 0.6) * 2;
+            const grid = Math.sin(warpX * 0.4) * Math.cos(warpY * 0.3);
+            const vortex = Math.sin(dist * 0.2 + t * 2) * Math.exp(-dist * 0.08);
+            const spiral = Math.sin(Math.atan2(dy, dx) * 4 + dist * 0.1 - t * 1.2);
+            const stream1 = Math.sin(x * 0.15 + y * 0.1 - t * 1.0) * Math.cos(x * 0.1 - y * 0.2 + t * 0.7);
+            const stream2 = Math.cos(x * 0.12 - y * 0.15 + t * 0.9) * Math.sin(y * 0.08 + t * 0.5);
+            const fracture = Math.sin((x + y) * 0.25 + t * 0.4) * Math.cos((x - y) * 0.2 - t * 0.3);
+            return grid * 0.3 + vortex * spiral * 0.4 + stream1 * 0.15 + stream2 * 0.1 + fracture * 0.05;
+        }
+    }
+};
+
+class AsciiBackdrop {
+    constructor() {
+        this.element = document.getElementById('ascii-backdrop');
+        this.active = false;
+        this.frame = 0;
+        this.patternName = 'inventory';
+        this.fontSize = 14;
+        this.speed = 8;
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => { if (this.active) this.render(); }, 500);
+        });
+    }
+
+    start() {
+        if (!this.active) {
+            this.active = true;
+            this.loop();
+        }
+    }
+
+    randomize() {
+        const keys = Object.keys(PATTERN_CONFIG.patterns);
+        this.patternName = keys[Math.floor(Math.random() * keys.length)];
+    }
+
+    stop() {
+        this.active = false;
+        if (this.animationId) cancelAnimationFrame(this.animationId);
+        this.element.textContent = '';
+    }
+
+    calculateDimensions() {
+        const charWidth = this.fontSize * 0.6;
+        const charHeight = this.fontSize;
+        const width = Math.ceil(window.innerWidth / charWidth) + 10;
+        const height = Math.ceil(window.innerHeight / charHeight);
+        return { width, height };
+    }
+
+    render() {
+        const { width, height } = this.calculateDimensions();
+        const t = (this.frame * Math.PI) / (60 * this.speed);
+        const patternFunc = PATTERN_CONFIG.patterns[this.patternName] || PATTERN_CONFIG.patterns['inventory'];
+        let result = '';
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let value = patternFunc(x, y, t, width, height);
+                if (value > 0.8) result += '█';
+                else if (value > 0.5) result += '▓';
+                else if (value > 0.2) result += '▒';
+                else if (value > -0.2) result += '░';
+                else if (value > -0.5) result += '·';
+                else result += ' ';
+            }
+            result += '\n';
+        }
+        this.element.textContent = result;
+    }
+
+    loop() {
+        if (!this.active) return;
+        this.frame++;
+        this.render();
+        this.animationId = requestAnimationFrame(() => this.loop());
+    }
+
+    setOpacity(val) {
+        this.element.style.opacity = val;
+    }
+}
+
+const backdrop = new AsciiBackdrop();
+backdrop.randomize();
+
+// --- Traduzioni ---
+const I18N = {
+  role: ["Designer di prodotto · Artista digitale", "Product Designer · Digital Artist"],
+  sec_contatti: ["Contatti", "Contacts"],
+  sec_competenze: ["Competenze", "Skills"],
+  sec_lingue: ["Lingue", "Languages"],
+  sec_profilo: ["Profilo", "Profile"],
+  sec_formazione: ["Formazione Accademica", "Education"],
+  sec_esperienza: ["Esperienza Professionale", "Work Experience"],
+  dt_sede: ["sede", "location"],
+  lang_it_name: ["Italiano", "Italian"],
+  lang_it_level: ["madrelingua", "native"],
+  lang_en_name: ["Inglese", "English"],
+  cat_grafica: ["Grafica e UI", "Graphics & UI"],
+  cat_cad: ["CAD e Modellazione 3D", "CAD & 3D Modeling"],
+  cat_illustrazione: ["Illustrazione 2D", "2D Illustration"],
+  cat_ai: ["Strumenti AI", "AI Tools"],
+  ai_img: ["Nano Banana 2 <em>· generazione immagini</em>", "Nano Banana 2 <em>· image generation</em>"],
+  profile: [
+    "Progettista con una formazione in design del prodotto industriale e una specializzazione in corso in design per l'ambiente. Parallelamente al percorso accademico, ho sviluppato una solida pratica professionale come artista digitale e creative lead nel settore dello sviluppo videoludico indipendente. Questo percorso ibrido mi permette di unire il rigore metodologico, logico e strutturale del design industriale con la direzione artistica, la gestione visiva e le dinamiche di produzione di prodotti digitali commerciali.",
+    "Product designer with a degree in industrial product design, currently specializing in design for the environment. Alongside my academic path, I have built a solid professional practice as a digital artist and creative lead in independent game development. This hybrid background allows me to combine the methodological and structural rigor of industrial design with art direction, visual management and the production dynamics of commercial digital products."
+  ],
+  edu1_title: ["Laurea Magistrale in Planet Life Design", "Master's Degree in Planet Life Design"],
+  edu1_date: ["2024 – in corso", "2024 – present"],
+  edu1_org: ["Università degli Studi di Perugia, sede di Assisi", "University of Perugia, Assisi campus"],
+  edu1_desc: ["Specializzazione orientata alla progettazione per l'ambiente e allo sviluppo sostenibile.", "Specialization focused on design for the environment and sustainable development."],
+  edu2_title: ["Laurea Triennale in Design del Prodotto Industriale", "Bachelor's Degree in Industrial Product Design"],
+  edu2_org: ["Università degli Studi di Ferrara", "University of Ferrara"],
+  edu2_desc: ["Votazione conseguita: 107/110.", "Final grade: 107/110."],
+  edu3_title: ["Diploma di Maturità Scientifica", "Scientific High School Diploma"],
+  job1_title: ["Creative Lead e 2D Artist <em>· contratto esterno</em>", "Creative Lead & 2D Artist <em>· contract work</em>"],
+  job1_date: ["2022 – in corso", "2022 – present"],
+  job1_org: ["Milkbubbles, studio di sviluppo indipendente", "Milkbubbles, independent game studio"],
+  job1_desc: [
+    "Direzione artistica del videogioco GladiEATers, <a href='https://store.steampowered.com/app/2141280/GladiEATers/'>pubblicato su Steam</a>. Responsabile della creazione di sprite e asset 2D, della progettazione dell'interfaccia utente (UI) e del coordinamento del flusso di lavoro visivo all'interno di un team di sviluppo internazionale.",
+    "Art direction of the video game GladiEATers, <a href='https://store.steampowered.com/app/2141280/GladiEATers/'>published on Steam</a>. Responsible for sprite and 2D asset creation, user interface (UI) design, and coordination of the visual workflow within an international development team."
+  ],
+  job2_title: ["Artista Freelance", "Freelance Artist"],
+  job2_date: ["2020 – in corso", "2020 – present"],
+  job2_org: ["Libera professione", "Self-employed"],
+  job2_desc: [
+    "Gestione di commissioni per clienti privati. Sviluppo di illustrazioni, concept art e materiale grafico lavorando in autonomia sulle specifiche e sulle scadenze richieste dalla committenza.",
+    "Managing commissions for private clients. Illustrations, concept art and graphic material produced autonomously, following the client's brief and deadlines."
+  ],
+  job3_title: ["Tirocinante", "Intern"],
+  job3_date: ["giu 2024", "jun 2024"],
+  job3_desc: [
+    "Supporto alle attività operative dell'ente regionale, affiancamento nella gestione organizzativa e partecipazione alle dinamiche interne di un'istituzione culturale pubblica.",
+    "Supported the daily operations of the regional body, assisting with organizational management within a public cultural institution."
+  ],
+  job4_title: ["Assistente di Studio Fotografico <em>· Erasmus+</em>", "Photo Studio Assistant <em>· Erasmus+</em>"],
+  job4_org: ["Studio fotografico locale, La Coruña (Spagna)", "Local photography studio, A Coruña (Spain)"],
+  job4_desc: [
+    "Esperienza formativa internazionale pre-universitaria della durata di un mese. Affiancamento nelle operazioni quotidiane, gestione della strumentazione e supporto sul set.",
+    "One-month international training experience before starting university. Day-to-day assistance, equipment handling and on-set support."
+  ],
+  gdpr: [
+    "Autorizzo il trattamento dei miei dati personali ai sensi del Decreto Legislativo 30 giugno 2003, n. 196 e dell'art. 13 del GDPR (Regolamento UE 2016/679). CV creato l'11/08/26 tramite l'utilizzo e l'aiuto di Claude Fable.",
+    "I authorize the processing of my personal data pursuant to Italian Legislative Decree no. 196 of 30 June 2003 and art. 13 of the GDPR (EU Regulation 2016/679). CV created on 11/08/26 with the use and help of Claude Fable."
+  ],
+  btn_theme: ["Cambia tema", "Toggle theme"],
+  btn_bg: ["Densità sfondo", "Backdrop density"],
+  btn_shuffle: ["Cambia pattern", "Shuffle pattern"],
+  btn_lang: ["Versione inglese", "Versione italiana"],
+  btn_print: ["Stampa / Esporta PDF", "Print / Export PDF"]
+};
+
+const btnTheme = document.getElementById('btn-theme');
+const btnBg = document.getElementById('btn-bg');
+const btnShuffle = document.getElementById('btn-shuffle');
+const btnLang = document.getElementById('btn-lang');
+const btnPrint = document.getElementById('btn-print');
+
+let currentLang = localStorage.getItem('cv-lang') || 'it';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('cv-lang', lang);
+  document.documentElement.lang = lang;
+  const idx = lang === 'it' ? 0 : 1;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const entry = I18N[el.dataset.i18n];
+    if (entry) el.innerHTML = entry[idx];
+  });
+
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const entry = I18N[el.dataset.i18nTitle];
+    if (entry) {
+      el.title = entry[idx];
+      el.setAttribute('aria-label', entry[idx]);
+    }
+  });
+
+  btnLang.textContent = lang === 'it' ? 'EN' : 'IT';
+}
+
+btnLang.addEventListener('click', () => {
+  applyLang(currentLang === 'it' ? 'en' : 'it');
+});
+
+// --- Controlli ---
+btnTheme.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+});
+
+const backdropLevels = [0.4, 0.2, 0.1, 0.05, 0];
+const backdropIcons = ["█", "▓", "▒", "░", "∅"];
+let bgIndex = 2;
+
+function updateBackdrop() {
+  const opacity = backdropLevels[bgIndex];
+  btnBg.textContent = backdropIcons[bgIndex];
+
+  if (opacity === 0) {
+    backdrop.stop();
+    backdrop.element.style.opacity = '0';
+  } else {
+    if (!backdrop.active) backdrop.start();
+    backdrop.setOpacity(opacity);
+  }
+}
+
+btnBg.addEventListener('click', () => {
+  bgIndex++;
+  if (bgIndex >= backdropLevels.length) bgIndex = 0;
+  updateBackdrop();
+});
+
+btnShuffle.addEventListener('click', () => {
+  backdrop.randomize();
+});
+
+btnPrint.addEventListener('click', () => {
+  window.print();
+});
+
+// Avvio
+updateBackdrop();
+applyLang(currentLang);
+</script>
+</body>
+</html>
