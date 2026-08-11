@@ -121,6 +121,15 @@ body.dark-theme .page {
   letter-spacing: 0.08em;
 }
 
+.control-btn.print {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.control-btn.print:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
 /* ---------- Header ---------- */
 .cv-header { text-align: center; margin-bottom: 9mm; }
 .cv-header h1 {
@@ -255,10 +264,11 @@ ul li em { font-style: normal; color: var(--dim); }
   aside {
     display: grid;
     grid-template-columns: 42mm 1fr;
-    column-gap: 6mm;
+    gap: 8mm;
     align-items: start;
   }
   .photo-container { margin-bottom: 0; }
+  aside section { margin-bottom: 0; }
   aside section:nth-of-type(2),
   aside section:nth-of-type(3) { grid-column: 1 / -1; }
 
@@ -266,10 +276,11 @@ ul li em { font-style: normal; color: var(--dim); }
 }
 
 @media screen and (max-width: 560px) {
-  aside { grid-template-columns: 1fr; }
+  .cv-header h1 { font-size: 18px; letter-spacing: 0.14em; padding-left: 0.14em; }
+  aside { grid-template-columns: 1fr; gap: 7mm; }
   aside section:nth-of-type(2),
   aside section:nth-of-type(3) { grid-column: auto; }
-  .photo-container { width: 45mm; margin: 0 auto 5mm; }
+  .photo-container { width: 45mm; margin: 0 auto; }
 }
 
 /* ---------- Stampa ---------- */
@@ -316,7 +327,7 @@ ul li em { font-style: normal; color: var(--dim); }
     <button class="control-btn" id="btn-bg" data-i18n-title="btn_bg" title="Densità sfondo">▓</button>
     <button class="control-btn" id="btn-shuffle" data-i18n-title="btn_shuffle" title="Cambia pattern">⚄</button>
     <button class="control-btn text" id="btn-lang" data-i18n-title="btn_lang" title="Versione inglese">EN</button>
-    <button class="control-btn" id="btn-print" data-i18n-title="btn_print" title="Stampa / Esporta PDF" aria-label="Stampa">
+    <button class="control-btn print" id="btn-print" data-i18n-title="btn_print" title="Stampa / Esporta PDF" aria-label="Stampa">
       <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 6 2 18 2 18 9"></polyline>
         <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
@@ -701,7 +712,7 @@ class AsciiBackdrop {
         this.frame = 0;
         this.patternName = 'inventory';
         this.fontSize = 14;
-        this.speed = 8;
+        this.speed = 25;
 
         let resizeTimeout;
         window.addEventListener('resize', () => {
